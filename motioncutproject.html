@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Friendly Pricing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .pricing-table {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .pricing-table .plan {
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 20%;
+        }
+
+        .pricing-table .plan .plan-name {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .pricing-table .plan .plan-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .pricing-table .plan .plan-currency {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .pricing-table .plan .plan-features {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .pricing-table .plan .plan-features li {
+            margin-bottom: 5px;
+        }
+
+        .pricing-table .plan .plan-cta {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pricing-table .plan .plan-cta:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pricing Plans</h1>
+        </div>
+
+        <div class="pricing-table">
+            <div class="plan">
+                <div class="plan-name">Basic</div>
+                <div class="plan-price">$10</div>
+                <div class="plan-currency">/month</div>
+                <ul class="plan-features">
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+                <a href="#" class="plan-cta">Get Started</a>
+            </div>
+
+            <div class="plan">
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">$20</div>
+                <div class="plan-currency">/month</div>
+                <ul class="plan-features">
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                    <li>Feature 4</li>
+                </ul>
+                <a href="#" class="plan-cta">Get Started</a>
+            </div>
+
+            <div class="plan">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price">$40</div>
+                <div classdiv>
+```div>
+<div class="plan-currency">/month</div>
+<ul class="plan-features">
+<li>Feature 1</li>
+<li>Feature 2</li>
+<li>Feature 3</li>
+<li>Feature 4</li>
+<li>Feature 5</li>
+</ul>
+<a href="#" class="plan-cta">Get Started</a>
+</div>
+</div>
+
+<script>
+document.querySelectorAll(".plan-price").forEach(function(element) {
+element.textContent = element.textContent.replace("00", "{{price}}");
+});
+</script>
+
+</div>
+</body>
+</html>
