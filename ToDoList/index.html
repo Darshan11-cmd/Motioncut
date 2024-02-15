@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .task-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .task-item button {
+            background-color: #f4f4f4;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .task-item button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="Enter task">
+            <button type="submit">Add Task</button>
+        </form>
+        <ul id="task-list" class="task-list"></ul>
+    </div>
+    <script>
+        const taskForm = document.getElementById('task-form');
+        const taskInput = document.getElementById('task-input');
+        const taskList = document.getElementById('task-list');
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.forEach(task => {
+                addTaskToList(task.text, task.completed);
+            });
+        }
+
+        function saveTasks() {
+            const tasks = Array.from(taskList.children).map(taskItem => {
+                return {
+                    text: taskItem.querySelector('label').textContent,
+                    completed: taskItem.querySelector('input[type="checkbox"]').checked
+                };
+            });
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function addTaskToList(text, completed = false) {
+            const taskItem = document.createElement('li');
+            taskItem.classList.add('task-item');
+            taskItem.innerHTML = `
+                <input type="checkbox" ${completed ? 'checked' : ''}>
+                <label>${text}</label>
+                <button>Delete</button>
+            `;
+            taskList.appendChild(taskItem);
+            const deleteButton = taskItem.querySelector('button');
+            deleteButton.addEventListener('click', () => {
+                taskList.removeChild(taskItem);
+                saveTasks();
+            });
+            const checkbox = taskItem.querySelector('input[type="checkbox"]');
+            checkbox.addEventListener('change', () => {
+                saveTasks();
+            });
+        }
+
+        taskForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const taskText = taskInput.value.trim();
+            if (taskText) {
+                addTaskToList(taskText);
+                taskInput.value = '';
+                saveTasks();
+            }
+        });
+
+        loadTasks();
+    </script>
+</body>
+</html>
